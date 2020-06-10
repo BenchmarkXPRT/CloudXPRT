@@ -33,12 +33,12 @@ The CloudXPRT Preview release includes two workloads that can be installed and r
 ### Web microservices
 In the web-tier microservices workload, a simulated user logs in to a web application that does three things: provides a selection of stock options, performs Monte-Carlo simulations with those stocks, and presents the user with options that may be of interest. The workload reports performance in transactions per second, which testers can use to directly compare IaaS stacks and to evaluate whether any given stack is capable of meeting service-level agreement (SLA) thresholds.
 
-#### [Set up and install the Web Microservices workload](web-microservices)
+#### [Set up and install the Web Microservices workload](Web-microservices-docs/README.md)
 
 ### Data analytics
 The machine learning (ML) training workload calculates XGBoost model training time. XGBoost is a gradient-boosting framework  that data scientists often use for ML-based regression and classification problems. The purpose of the workload in the context of CloudXPRT is to evaluate how well an IaaS stack enables XGBoost to speed and optimize model training. The workload reports latency and throughput rates. As with the web-tier microservices workload, testers can use this workload’s metrics to compare IaaS stack performance and to evaluate whether any given stack is capable of meeting SLA thresholds.
 
-#### [Set up and install the Data Analytics workload](data-analytics/README.md)
+#### [Set up and install the Data Analytics workload](Data-analytics-docs/README.md)
 
 ## Prerequisites
 We highly recommended running this benchmark on high end servers. While running, the benchmark will scale to utilize all the cores available. However, for functional testing, your physical node or VM must have at least:
