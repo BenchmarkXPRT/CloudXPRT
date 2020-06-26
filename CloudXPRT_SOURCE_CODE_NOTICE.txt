@@ -1,0 +1,3 @@
+NOTE: The CloudXPRT source code is not yet available, but we will publish the source code at https://github.com/BenchmarkXPRT/CloudXPRT as soon as possible.
+
+- June 26, 2020
