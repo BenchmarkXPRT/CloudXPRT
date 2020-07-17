@@ -1,0 +1,79 @@
+---
+# Cassandra Service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cassandra
+  name: cassandra
+spec:
+  clusterIP: None
+  ports:
+    - port: 9042
+  selector:
+    app: cassandra
+---
+# Cassandra Stateful Set Deployment
+apiVersion: "apps/v1"
+kind: StatefulSet
+metadata:
+  name: cassandra
+spec:
+  serviceName: cassandra
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cassandra
+  template:
+    metadata:
+      labels:
+        app: cassandra
+    spec:
+      containers:
+        - name: cassandra
+          image: cassandra:3.11.6
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "0.2"
+          ports:
+            - containerPort: 7000
+              name: intra-node
+            - containerPort: 7001
+              name: tls-intra-node
+            - containerPort: 7199
+              name: jmx
+            - containerPort: 9042
+              name: cql
+          env:
+            - name: CASSANDRA_SEEDS
+              value: cassandra-0.cassandra.default.svc.cluster.local
+            - name: MAX_HEAP_SIZE
+              value: 256M
+            - name: HEAP_NEWSIZE
+              value: 100M
+            - name: CASSANDRA_CLUSTER_NAME
+              value: "Cassandra"
+            - name: CASSANDRA_DC
+              value: "DC1"
+            - name: CASSANDRA_RACK
+              value: "Rack1"
+            - name: CASSANDRA_ENDPOINT_SNITCH
+              value: GossipingPropertyFileSnitch
+          volumeMounts:
+            - name: cassandra-data
+              mountPath: /var/lib/cassandra/data
+      nodeSelector:
+        dbtype: cassandra
+  volumeClaimTemplates:
+    - metadata:
+        name: cassandra-data
+        annotations:  # comment line if you want to use a StorageClass
+          # or specify which StorageClass
+          volume.beta.kubernetes.io/storage-class: ""   # comment line if you
+          # want to use a StorageClass or specify which StorageClass
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

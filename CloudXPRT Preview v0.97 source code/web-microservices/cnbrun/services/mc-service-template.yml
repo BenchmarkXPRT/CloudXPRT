@@ -1,0 +1,45 @@
+---
+# MC service
+apiVersion: v1
+kind: Service
+metadata:
+  name: mc-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8074
+  selector:
+    app: mc-service
+---
+# MC Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mc-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mc-service
+  template:
+    metadata:
+      labels:
+        app: mc-service
+    spec:
+      containers:
+      - name: mc-service
+        image: cloudxprt/mcserver:{{IMAGE_VERSION}}
+        ports:
+        - containerPort: 8074
+        resources:
+          requests:
+            memory: "20Mi"
+            cpu: "{{CPU_REQUESTS}}"
+        env:
+          - name: OMP_NUM_THREADS
+            value: "{{THREADS_NUM}}"
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+

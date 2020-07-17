@@ -1,0 +1,162 @@
+<header>
+  <meta charset="UTF-8">
+  <title>Today's Options</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="tabulator/css/bootstrap/tabulator_bootstrap4.min.css">
+  <link rel="stylesheet" href="css/options.css">
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="tabulator/js/tabulator.min.js"></script>
+</header>
+
+<body onload="runMC()">
+  <div class="navigation-bar">
+    <nav class="navbar navbar-dark bg-secondary">
+      <a class="navbar-brand text-white">Financial Options</a>
+      <button class="btn btn-primary" type="button" onclick="logout()">Logout</button>
+      </button>
+    </nav>
+  </div>
+  <div class="options-content">
+    <h1 class="h3 mb-3 font-weight-normal text-center text-white">Current Market</h1>
+    <div class="d-flex justify-content-center">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="carousel-row d-flex justify-content-between">
+                <div class="col-">
+                  <p class="text-center title">S&P 500</p>
+                  <p class="text-center price">3,094.04</p>
+                  <p class="text-center change-pos">+2.20 (+0.074%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">Dow 30</p>
+                  <p class="text-center price">27,783.59</p>
+                  <p class="text-center change-pos">+92.10 (+0.33%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">Nasdaq</p>
+                  <p class="text-center price">3,094.04</p>
+                  <p class="text-center change-neg">-3.99 (-0.05%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">Vix</p>
+                  <p class="text-center price">13.00</p>
+                  <p class="text-center change-pos">+0.32 (+2.52%)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-row d-flex justify-content-between">
+                <div class="col-">
+                  <p class="text-center title">Russell 2000</p>
+                  <p class="text-center price">1,589.18</p>
+                  <p class="text-center change-neg">-5.94 (-0.37%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">Gold</p>
+                  <p class="text-center price">1,464.80</p>
+                  <p class="text-center change-pos">+1.50 (+0.10%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">Silver</p>
+                  <p class="text-center price">16.95</p>
+                  <p class="text-center change-pos">+0.04 (+0.04%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">GBP/USD</p>
+                  <p class="text-center price">1.2837</p>
+                  <p class="text-center change-neg">-0.0012 (-0.098%)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-row d-flex justify-content-between">
+                <div class="col-">
+                  <p class="text-center title">Crude Oil</p>
+                  <p class="text-center price">57.43</p>
+                  <p class="text-center change-pos">+0.31 (+0.54%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">EUR/USD</p>
+                  <p class="text-center price">1.1001</p>
+                  <p class="text-center change-neg">-0.0006 (-0.055%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">10-Yr Bond</p>
+                  <p class="text-center price">1.8700</p>
+                  <p class="text-center change-neg">-0.0390 (-2.04%)</p>
+                </div>
+                <div class="col-">
+                  <p class="text-center title">USD/JPY</p>
+                  <p class="text-center price">108.692</p>
+                  <p class="text-center change-neg">-0.103 (-0.094%)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    </br>
+
+    <h1 class="h3 mb-3 font-weight-normal text-center text-white">Top Trading Options</h1>
+    <div class="table-container">
+      <div id="options-table" class="table-bordered table-sm"></div>
+    </div>
+    </br>
+    </br>
+    </br>
+
+    <h1 class="h3 mb-3 font-weight-normal text-center text-white">Latest Articles</h1>
+    <div class="link-container">
+      <div class="row no-gutters bg-light position-relative">
+        <div class="col-md-6 mb-md-0 p-md-4">
+          <img src="images/dollar-499481_1920.jpg" class="w-100" alt="...">
+        </div>
+        <div class="col-md-6 position-static p-4 pl-md-0">
+          <h5 class="mt-0">Lorem Ipsum</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis nisl dui. Sed commodo metus eget urna rutrum aliquam. Fusce risus lorem, vehicula nec sem ac, mollis ultricies velit. Phasellus in ligula tristique, bibendum leo at, pharetra elit.</p>
+          <a href="#" class="stretched-link">Mauris interdum</a>
+        </div>
+      </div>
+      </br>
+      <div class="row no-gutters bg-light position-relative">
+        <div class="col-md-6 mb-md-0 p-md-4">
+          <img src="images/hands-4604066_1920.png" class="w-100" alt="...">
+        </div>
+        <div class="col-md-6 position-static p-4 pl-md-0">
+          <h5 class="mt-0">Etiam quis nisl dui</h5>
+          <p>Suspendisse potenti. Aenean gravida dapibus nunc eget interdum. Aliquam ac eros urna. Nunc nulla ipsum, dapibus nec feugiat a, mollis sit amet neque. Mauris ac velit odio. Nullam sed dui eu nibh dignissim sollicitudin. Cras porta tempor ante, condimentum vehicula nibh venenatis volutpat.</p>
+          <a href="#" class="stretched-link">In hac habitasse platea dictumst.</a>
+        </div>
+      </div>
+      </br>
+      <div class="row no-gutters bg-light position-relative">
+        <div class="col-md-6 mb-md-0 p-md-4">
+          <img src="images/money-2724241_1920.jpg" class="w-100" alt="...">
+        </div>
+        <div class="col-md-6 position-static p-4 pl-md-0">
+          <h5 class="mt-0">Aliquam ac eros urna</h5>
+          <p>Nam mattis tellus at dolor vehicula pulvinar. Proin consectetur maximus enim in fringilla. Aliquam semper erat gravida bibendum suscipit. Fusce in massa pharetra, molestie sem in, efficitur arcu. Mauris molestie finibus ex, interdum accumsan justo. Cras finibus magna quis libero ullamcorper, id maximus lorem mattis. Sed porta dolor in velit porttitor efficitur.</p>
+          <a href="#" class="stretched-link">Vestibulum vitae blandit urna. </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/montecarlo.js"></script>
+</body>

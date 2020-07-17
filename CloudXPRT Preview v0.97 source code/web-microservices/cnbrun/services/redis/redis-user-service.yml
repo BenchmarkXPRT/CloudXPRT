@@ -1,0 +1,37 @@
+---
+# Redis user service
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-user-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+  selector:
+    app: redis-user-service
+---
+# Redis user Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-user-service
+  template:
+    metadata:
+      labels:
+        app: redis-user-service
+    spec:
+      containers:
+      - name: redis-user
+        image: redis:5.0.8-buster
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            memory: "10Mi"
+            cpu: "100m"

@@ -1,0 +1,14 @@
+Benchmark tool written in golang. 
+
+Support http and https.
+Support GET and POST commands.
+Support reading a mixture of URLs in a file as input.
+Support assign weight for each URL.
+Support response verification with EXPECT.
+
+The code in file 'gobench.go' is based on gobench.go, found at
+https://github.com/cmpxchg16/gobench, and licensed under New BSD License
+by Uri Shamay (shamayuri@gmail.com).
+
+Additional code and modification to gobench.go are Copyright 2020 BenchmarkXPRT
+Development Community, and licensed under Apache License, Version 2.0.

@@ -1,0 +1,38 @@
+---
+# Redis Encryption/Decryption service
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-crypt-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+  selector:
+    app: redis-crypt-service
+---
+# Redis Encryption/Decryption Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-crypt-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-crypt-service
+  template:
+    metadata:
+      labels:
+        app: redis-crypt-service
+    spec:
+      containers:
+      - name: redis-crypt
+        image: redis:5.0.8-buster
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "200m"
+

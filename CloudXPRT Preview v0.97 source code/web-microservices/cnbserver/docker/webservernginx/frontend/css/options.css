@@ -1,0 +1,42 @@
+body {
+  padding-bottom: 3rem;
+  background-color: #303030;
+}
+
+.options-content {
+  padding-top: 3rem;
+}
+.carousel {
+  margin-bottom: 4rem;
+  height: 125px;
+  width: 875px;
+}
+.carousel-item {
+  height: 140px;
+}
+.container {
+  width: 700px;
+}
+.col- {
+  width: 24%;
+  background-color: #e8e8e8;
+}
+.title {
+  color: blue;
+  font-size: 18px;
+}
+.price {
+  font-weight: bold;
+}
+.change-pos {
+  color: green;
+}
+.change-neg {
+  color: red;
+}
+.table-container {
+  padding: 20px;
+}
+.link-container {
+  padding: 20px;
+}

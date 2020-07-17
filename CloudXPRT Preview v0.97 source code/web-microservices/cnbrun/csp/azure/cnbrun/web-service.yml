@@ -1,0 +1,45 @@
+---
+# Web service
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    name: web-service-svc
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8070
+      nodePort: 31896
+      name: http
+    - port: 8443
+      nodePort: 31443
+      name: https
+  selector:
+    app: web-service
+---
+# Web Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-service
+  template:
+    metadata:
+      labels:
+        app: web-service
+    spec:
+      containers:
+      - name: webserver
+        image: cloudxprt/webserver:v1.0
+        ports:
+        - containerPort: 8070
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "500m"
+

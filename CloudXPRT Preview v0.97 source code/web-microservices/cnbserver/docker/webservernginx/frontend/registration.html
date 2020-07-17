@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/signin-register.css">
+</head> 
+
+<body>
+  <form id="form" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal text-center text-white">Registration</h1>
+    </br>
+    <label class="text-white">Username </label>
+    <input type="text" class="form-control" id="username" autofocus required>
+    <label class="text-white">Password </label>
+    <input type="password" class="form-control" inputmode="" id="password" title="7-20 characters consisting of atleast:
+    one uppercase letter,
+    one lowercase letter,
+    one number,
+    and one of the following special characters (!,#,$,%)"pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[!#$%]).{7,20}" required>
+    <div class="d-flex justify-content-between p-2">
+      <label class="password-meter text-white">Password Strength</label>
+      <progress id="progress" value="0", max="100"></progress>
+    </div>
+    <label class="text-white">Verify Password </label>
+    <input type="password" class="form-control" id="verifyPassword" required>
+    <label class="text-white">Email Address </label>
+    <input type="email" class="form-control" id="email" required>
+    <label class="text-white">Verify Email Address </label>
+    <input type="email" class="form-control" id="verifyEmail" required>
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="register-button"onclick="register('form')">Register</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="clearForm('form')">Cancel</button>
+  </form>
+  <script src="js/registration.js"></script>
+  <script src="js/passwordStrength.js"></script>
+</body>

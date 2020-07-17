@@ -1,0 +1,9 @@
+{
+    "_comment": "configuration file used for postprocess plot (-p) option",
+    "Title": "CloudXPRT Web Microservices Workload Results",
+    "Output": "result.png",
+    "Plots": [
+        {"Legend": "Legend1", "Data": "output/autoloader_mc_2020****_190356.log"},
+        {"Legend": "Legend2", "Data": "output/autoloader_mc_2020****_211235.log"}
+    ]
+}

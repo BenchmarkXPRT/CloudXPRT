@@ -1,0 +1,8 @@
+On a machine has Intel compiler (Intel Parallel Studio) installed:
+1. source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh -arch intel64
+2. should have icc and icpc available: icc -v
+3. make
+4. To run the Monte Carlo program:
+   # ./MonteCarloInsideBlockingDP.avx512 4 4096 262144 4k 0 output.json
+   # ./MonteCarloInsideBlockingDP.arch_avx2 4 4096 262144 4k 0 output.json
+5. To generate the input file for Monte Carlo program, build and run the go file under dataGen

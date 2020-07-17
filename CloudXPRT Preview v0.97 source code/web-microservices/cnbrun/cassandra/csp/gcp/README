@@ -1,0 +1,1 @@
+By default, storage type is standard persistent disk. If use SSD persistent disk, use the yaml file cassandra-storage-ssd.yaml
