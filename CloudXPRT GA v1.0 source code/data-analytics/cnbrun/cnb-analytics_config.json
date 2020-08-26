@@ -1,0 +1,12 @@
+{
+  "_comment": "cloudxprt",
+  "runoption": "xgboost",
+  "workload": {
+    "xgboost": {
+      "version": "v1.00",
+      "cpus_per_pod": "12",
+      "numKAFKAmessages": "1",
+      "loadgen_lambda": "12"
+    }
+  }
+}
