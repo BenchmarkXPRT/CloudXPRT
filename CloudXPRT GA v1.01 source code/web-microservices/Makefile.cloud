@@ -1,0 +1,104 @@
+# Set go path to CNB directory
+GOPATH := $(shell pwd)
+export GOPATH
+
+all: autoloader cnbrun gobench postprocess
+
+# These Phony targets are required since we have identical directory names
+.PHONY: cnbrun gobench postprocess
+
+# Packages needed for building binaries
+go-get:
+	go get "github.com/spf13/viper"
+	go get "github.com/c9s/goprocinfo/linux"
+	go get "github.com/olekukonko/tablewriter"
+	go get "github.com/valyala/fasthttp"
+	go get "gonum.org/v1/plot"
+	go get "gonum.org/v1/plot/plotter"
+	go get "gonum.org/v1/plot/vg"
+
+# Binaries
+autoloader:
+	cd $(GOPATH)/gobench/autoloader && go build -o ../../cnbrun/autoloader autoloader.cloud.go
+cnbrun:
+	cd $(GOPATH)/cnbrun && go build -o cnbrun cnbrun.go
+gobench:
+	cd $(GOPATH)/gobench && go build -o ../cnbrun/gobench gobench.go
+postprocess:
+	cd $(GOPATH)/postprocess && go build -o postprocess postprocess.go
+
+# Build packages for all 3 CSPs
+build: buildaws buildazure buildgcp
+
+# Creating build package for AWS
+cnb-release = CloudXPRT_v1.01_web-microservices
+buildaws: all
+	mkdir -p build
+	mkdir -p $(cnb-release)
+	cp README.md ../LICENSE ../SystemInfo.csv $(cnb-release)
+
+	# cnbrun
+	mkdir -p $(cnb-release)/cnbrun/cassandra
+	cd cnbrun && cp -rf autoloader cnbrun config.json gobench cleanups.sh services ../$(cnb-release)/cnbrun
+	cp cnbrun/csp/aws/kops/cnbrun/mc.sh $(cnb-release)/cnbrun
+	cp -r cnbrun/csp/aws/kops/cnbrun/metrics-server $(cnb-release)/cnbrun
+	cp cnbrun/cassandra/csp/*.yaml $(cnb-release)/cnbrun/cassandra
+	cp cnbrun/cassandra/csp/aws/*.yaml $(cnb-release)/cnbrun/cassandra
+	cp cnbrun/cassandra/schema.cql $(cnb-release)/cnbrun/cassandra
+	cd postprocess && cp plot.json postprocess report.html ../$(cnb-release)/cnbrun
+	cp -r postprocess/css $(cnb-release)/cnbrun
+
+	# cleanup
+	tar czvf build/$(cnb-release)-AWS.tar.gz $(cnb-release)
+	rm -rf $(cnb-release)
+
+# Creating build package for Google Cloud Platform
+buildgcp: all
+	mkdir -p build
+	mkdir -p $(cnb-release)
+	cp README.md ../LICENSE ../SystemInfo.csv $(cnb-release)
+
+	# cnbrun
+	mkdir -p $(cnb-release)/cnbrun/cassandra
+	cd cnbrun && cp -rf autoloader cnbrun config.json gobench cleanups.sh services ../$(cnb-release)/cnbrun
+	cp cnbrun/csp/gcp/kops/cnbrun/mc.sh $(cnb-release)/cnbrun
+	cp -r cnbrun/csp/aws/kops/cnbrun/metrics-server $(cnb-release)/cnbrun
+	cp cnbrun/cassandra/csp/*.yaml $(cnb-release)/cnbrun/cassandra
+	cp cnbrun/cassandra/csp/gcp/*.yaml $(cnb-release)/cnbrun/cassandra
+	cp cnbrun/cassandra/schema.cql $(cnb-release)/cnbrun/cassandra
+	cd postprocess && cp plot.json postprocess report.html ../$(cnb-release)/cnbrun
+	cp -r postprocess/css $(cnb-release)/cnbrun
+
+	# cleanup
+	tar czvf build/$(cnb-release)-GCP.tar.gz $(cnb-release)
+	rm -rf $(cnb-release)
+
+# Creating build package for Azure
+buildazure: all
+	mkdir -p build
+	mkdir -p $(cnb-release)
+	cp README.md ../LICENSE ../SystemInfo.csv $(cnb-release)
+
+	# cnbrun
+	mkdir -p $(cnb-release)/cnbrun/cassandra
+	cd cnbrun && cp -rf autoloader cnbrun config.json gobench cleanups.sh services ../$(cnb-release)/cnbrun
+	cp cnbrun/csp/azure/cnbrun/mc.sh $(cnb-release)/cnbrun
+	cp cnbrun/csp/azure/cnbrun/web-service.yml $(cnb-release)/cnbrun/services
+	cp -r cnbrun/csp/aws/kops/cnbrun/metrics-server $(cnb-release)/cnbrun
+	cp cnbrun/cassandra/csp/*.yaml $(cnb-release)/cnbrun/cassandra
+	cp cnbrun/cassandra/csp/azure/*.yaml $(cnb-release)/cnbrun/cassandra
+	cp cnbrun/cassandra/schema.cql $(cnb-release)/cnbrun/cassandra
+	cd postprocess && cp plot.json postprocess report.html ../$(cnb-release)/cnbrun
+	cp -r postprocess/css $(cnb-release)/cnbrun
+
+	# cleanup
+	tar czvf build/$(cnb-release)-Azure.tar.gz $(cnb-release)
+	rm -rf $(cnb-release)
+
+# Clean up binaries
+clean:
+	-rm cnbrun/autoloader
+	-rm cnbrun/cnbrun
+	-rm cnbrun/gobench
+	-rm postprocess/postprocess
+	-rm -rf build

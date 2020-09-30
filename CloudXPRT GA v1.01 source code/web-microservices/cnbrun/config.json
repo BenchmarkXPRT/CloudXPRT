@@ -1,0 +1,23 @@
+{
+    "_comment": "See README.md for further details on the available configuration parameters",
+    "_comment": "runoption must equal 'mc' for the current release",
+    "_comment": "if autoloader.lastclient equals '-1', the workload will increase until CPU utilization saturates (i.e. ~100%)",
+    "_comment": "The suggested timeinterval for both HPA and non_HPA modes is 60 seconds",
+    "_comment": "SLA - service level agreement in milliseconds",
+    "runoption": "mc",
+    "iterations": 1,
+    "hpamode": false,
+    "postprocess": false,
+    "ppoutputfile": "",
+    "autoloader": {
+        "initialclients": "1",
+        "clientstep": "1",
+        "lastclients": "-1",
+        "SLA": "3000",
+        "timeinterval": "60"
+    },
+    "workload": {
+        "version": "v1.0",
+        "cpurequests": "4"
+    }
+}
