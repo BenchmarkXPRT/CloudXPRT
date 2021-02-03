@@ -559,7 +559,7 @@ If you are using GUI on the local Ubuntu machine, logout and log back in as gcpu
     ```
 **NOTE:** Only needed if ssh/scp is blocked by company proxy, get the proxy settings from your companies' IT.
 
-#### Access master node of the k8s cluster created
+#### Access master node of the kubernetes cluster
 
 - Go to Google cloud console
 - Go to the running VM instances page

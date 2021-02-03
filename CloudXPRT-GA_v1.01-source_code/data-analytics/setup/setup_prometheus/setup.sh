@@ -56,7 +56,7 @@ echo "waiting for Tiller Pod in monitoring namespace... waiting for 30 secs"
 sleep 30
 
 #Initialize
-helm init --service-account=tiller --history-max 300
+helm init --stable-repo-url=https://charts.helm.sh/stable --service-account=tiller --history-max 300
 
 echo "waiting for Tiller Pod in monitoring namespace... waiting for 30 secs"
 sleep 30

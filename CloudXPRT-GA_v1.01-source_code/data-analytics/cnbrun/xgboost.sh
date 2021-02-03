@@ -82,11 +82,11 @@ available_num_cores=$(( $num_cores - ( $num_cpu_to_harness * $num_nodes )))
 echo "xgboost.sh: available_num_cores: " $available_num_cores "We reserve $num_cpu_to_harness CPUs per Node for webserver and kube-system pods"
 max_xgb_pods=$(( $available_num_cores  / $num_cpus_per_pod  ))
 
-# Make sure there is simetry in POD assigment per Node
+# Make sure there is symmetry in the POD assigment per Node
 if [ $(($max_xgb_pods%$num_nodes)) -eq 0 ]; then
-        echo "There is node/pod simetry..."
+        echo "There is node/pod symmetry..."
 else
-        echo "There is no simetry, Lets remove one pod.."
+        echo "There is no symmetry; removing one pod.."
         max_xgb_pods=$(($max_xgb_pods-1))
         echo $max_xgb_pods
 fi

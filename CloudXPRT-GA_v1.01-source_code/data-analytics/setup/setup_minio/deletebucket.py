@@ -16,7 +16,7 @@
 #===============================================================================
 
 from minio import Minio
-from minio.error import ResponseError
+from minio.error import InvalidResponseError
 import os
 import sys
 from os import listdir
@@ -43,5 +43,5 @@ if __name__ == "__main__":
               minioClient.remove_object(bucketname, obj.object_name)
 
            minioClient.remove_bucket(bucketname)
-    except ResponseError as err:
+    except InvalidResponseError as err:
        print(err)
