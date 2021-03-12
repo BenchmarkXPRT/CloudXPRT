@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://github.com/BenchmarkXPRT/CloudXPRT/blob/master/CloudXPRT-header.png" alt="CloudXPRT Header" /></h1>
+<h1 align="center"><img src="https://github.com/BenchmarkXPRT/CloudXPRT-working-space/blob/master/CloudXPRT-header.png" alt="CloudXPRT Header" /></h1>
 <h4 align="center">
   <i>
     A free cloud-native benchmark designed and developed by the
@@ -18,42 +18,48 @@
 - [Get involved with BenchmarkXPRT](#Get-involved-with-BenchmarkXPRT)
 
 ## Introduction
-[CloudXPRT](https://www.principledtechnologies.com/benchmarkxprt/cloudxprt/) is a cloud benchmark that can accurately measure the performance of modern, cloud-first applications deployed on modern infrastructure as a service (IaaS) platforms, whether those platforms are paired with on-premises (datacenter), private cloud, or public cloud deployments. Regardless of where clouds reside, applications are increasingly using them in latency-critical, highly available, and high-compute scenarios.
+[CloudXPRT](https://www.principledtechnologies.com/benchmarkxprt/cloudxprt/) is a cloud benchmark that can accurately measure the performance of applications deployed on modern infrastructure as a service (IaaS) platforms, whether those platforms are paired with on-premises (datacenter), private cloud, or public cloud deployments. Applications increasingly use clouds in latency-critical, highly available, and high-compute scenarios, so we designed CloudXPRT to use cloud-native components on an actual stack to produce end-to-end performance metrics that can help users determine the right IaaS configuration for their businesses.
 
 CloudXPRT
-* Is relevant to on-prem (datacenter), private, and public cloud deployments
-* Runs on top of cloud platform software such as Kubernetes and Docker
-* Supports multi-tier workloads
-* Reports relevant metrics including both throughput and critical latency for responsiveness-driven applications and maximum throughput for applications dependent on batch processing
+* is compatible with on-premises (datacenter), private, and public cloud deployments
+* runs on top of cloud platform software such as Kubernetes and Docker
+* supports multi-tier workloads
+* reports relevant metrics including both throughput and critical latency for responsiveness-driven applications, and maximum throughput for applications dependent on batch processing
 
 ----
+
 ## CloudXPRT workloads
-The CloudXPRT Preview release includes two workloads that can be installed and run independently.
+CloudXPRT currently includes two workloads that users can install and run independently: web microservices and data analytics. Testers can run CloudXPRT on local datacenter, Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure deployments.
 
 ### Web microservices
-In the web-tier microservices workload, a simulated user logs in to a web application that does three things: provides a selection of stock options, performs Monte-Carlo simulations with those stocks, and presents the user with options that may be of interest. The workload reports performance in transactions per second, which testers can use to directly compare IaaS stacks and to evaluate whether any given stack is capable of meeting service-level agreement (SLA) thresholds.
+In the web microservices workload, a simulated user logs in to a web application that does three things: provides a selection of stock options, performs Monte-Carlo simulations with those stocks, and presents the user with options that may be of interest. This scenario enables the workload to model a traditional three-tier web application with services in the web, application, and data layers. The workload uses Kubernetes, Docker, NGNIX, REDIS, Cassandra, and monitoring modules to mimic an end-to-end IaaS scenario.
 
-#### [Set up and install the Web Microservices workload](Web-microservices-docs/README.md)
+The workload reports performance in transactions per second, which reflects the number of successful requests per second the stack achieves for each level of concurrency. Testers can use this workload’s metrics to compare IaaS stack performance and to evaluate whether any given stack is capable of meeting SLA thresholds.
+
+#### [Set up and install the web microservices workload](web-microservices)
 
 ### Data analytics
-The machine learning (ML) training workload calculates XGBoost model training time. XGBoost is a gradient-boosting framework  that data scientists often use for ML-based regression and classification problems. The purpose of the workload in the context of CloudXPRT is to evaluate how well an IaaS stack enables XGBoost to speed and optimize model training. The workload reports latency and throughput rates. As with the web-tier microservices workload, testers can use this workload’s metrics to compare IaaS stack performance and to evaluate whether any given stack is capable of meeting SLA thresholds.
+The CloudXPRT data analytics workload uses the gradient-boosting technique to classify a moderately large dataset with the XGBoost library. XGBoost is a gradient-boosting framework that data scientists often use for ML-based regression and classification problems. In the context of CloudXPRT, the purpose of the workload is to evaluate how well an IaaS stack enables XGBoost to speed and optimize model training. To do this, the data analytics workload uses Kubernetes, Docker, object storage, message pipeline, and monitorization components to mimic an end-to-end IaaS scenario.
 
-#### [Set up and install the Data Analytics workload](Data-analytics-docs/README.md)
+The workload reports latency (response time in seconds in the 95th percentile) and throughput (jobs per minute) rates. Testers can use this workload’s metrics to compare IaaS stack performance and to evaluate whether any given stack is capable of meeting service-level agreement (SLA) thresholds.
+
+#### [Set up and install the data analytics workload](data-analytics/README.md)
 
 ## Prerequisites
 We highly recommended running this benchmark on high end servers. While running, the benchmark will scale to utilize all the cores available. However, for functional testing, your physical node or VM must have at least:
+* Ubuntu 20.04.2 or later for on-premises testing
+* Ubuntu 18.04 and 20.04.2 or later for CSP (AWS/Azure/GCP) testing
 * 16 logical or virtual CPUs
 * 8 GB RAM
-* 10 GB of available disk space (20 GB for the Data Analytics workload)
+* 10 GB of available disk space (50 GB for the data analytics workload)
+* an internet connection
 
-Each of these test configurations require both Docker and Kubernetes.
-Off-premises tests will require access to an Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure account, depending on the desired test configuration.
-An internet connection is required.
+For all target platforms—on-premises, AWS, Azure and GCP—testing requires both Docker and Kubernetes. The installation script takes care of this configuration. Off-premises tests require access to an AWS, Azure, or GCP account, depending on the test configuration.
 
 ## Results and results submission
 When the web microservices workload is complete, the benchmark saves the results to CloudXPRT_vXXX_web-microservices/cnbrun/output in CSV format, along with a log file.
 
-When the data analytics workload is complete, the benchmark saves the results to CloudXPRT_vXXX_data-analytics/cnbrun/results.csv in CSV format, generated by the command line –./cnb-analytics_parse-all-results.sh | sed -e 's/\s\+/,/g' > results.csv.e. The log file will appear in the same folder.
+When the data analytics workload is complete, the benchmark saves the results to CloudXPRT_vXXX_data-analytics/cnbrun/results.csv in CSV format, generated by the command line –./cnb-analytics_parse-all-results.sh | sed -e 's/\s\+/,/g' > results.csv. The log file will appear in the same folder.
 
 To submit results to our page, please follow these [instructions](https://www.principledtechnologies.com/benchmarkxprt/cloudxprt/2020/submit-results.php).
 
