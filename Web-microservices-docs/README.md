@@ -2,22 +2,25 @@
 
 - [Introduction](#introduction)
 - [Configure and run on-premises](#configure-and-run-on-premises)
-	- [Installation](#installation-on-onp)
-	- [Run the benchmark](#run-onp)
+	- [Installation on premises](#installation-on-premises)
+	- [Run the benchmark on premises](#run-the-benchmark-on-premises)
 - [Benchmark results](#benchmark-results)
 - [Configure and run on Amazon Web Services](#configure-and-run-on-amazon-web-services)
-	- [Create the virtual machines](#create-vms-aws)
-	- [Run the benchmark](#run-aws)
-	- [Save results](#save-results-aws)
+	- [Create the virtual machines AWS](#create-the-virtual-machines-aws)
+	- [Run the benchmark AWS](#run-the-benchmark-aws)
+	- [Save results locally](#save-results-locally)
+    - [Clean up the cluster](#clean-up-the-cluster)
 - [Configure and run on Microsoft Azure](#configure-and-run-on-microsoft-azure)
-	- [Create the virtual machines](#create-vms-azu)
-	- [Run the benchmark](#run-azu)
-	- [Save results](#save-results-azu)
+	- [Create the virtual machines Azure](#create-the-virtual-machines-Azure)
+    - [Run the benchmark Azure](#run-the-benchmark-Azure)
+	- [Save results locally](#save-results-locally)
+    - [Clean up the cluster](#clean-up-the-cluster)
 - [Configure and run on Google Cloud Platform](#configure-and-run-on-google-cloud-platform)
-	- [Create the virtual machines](#create-vms-gcp)
-	- [Run the benchmark](#run-gcp)
-	- [Save results](#save-results-gcp)
-- [Running in demo mode with a UI](#demo-with-a-ui)
+	- [Create the virtual machines GCP](#create-the-virtual-machines-gcp)
+	- [Run the benchmark GCP](#run-the-benchmark-gcp)
+	- [Save results locally](#save-results-locally)
+    - [Clean up the cluster](#clean-up-the-cluster)
+- [Running in demo mode with a UI](#running-in-demo-mode-with-a-ui)
 - [Build the benchmark from source](#build-the-benchmark-from-source)
 
 ## Introduction
@@ -58,7 +61,7 @@ We recommend running this benchmark on high-end servers because the benchmark sc
 - 8 GB RAM
 - 10 GB of available disk space
 
-### Installation
+### Installation on premises
 
 #### Set up the environment
 In each machine in your cluster:
@@ -152,7 +155,7 @@ Answer 'y' or 'yes' to the prompt.
 
 Note: This will not remove the proxy settings. If you want to run CloudXPRT again, you can run the `create-cluster.sh` script to re-create the Kubernetes cluster.
 
-### Run the benchmark
+### Run the benchmark on premises
 
 #### Configure benchmark parameters
 ```
@@ -282,7 +285,7 @@ The max throughput for this run is 900 successful requests per minute.
 
 ___
 
-## Configure and run on AWS
+## Configure and run on Amazon Web Services
 ### Install a Kubernetes cluster with KOPS on AWS and run CloudXPRT
 
 ### Preparation
@@ -340,7 +343,7 @@ ___
 	ssh-keygen
 	```
 
-### Create the virtual machines
+### Create the virtual machines AWS
 1. Untar the CloudXPRT data-analytics code.
 	```
 	cd ~
@@ -403,7 +406,7 @@ ___
 	sudo ./create-cluster.sh
 	```
 
-### Run the benchmark
+### Run the benchmark AWS
 ```
 cd ~
 tar xzf ~/CloudXPRT_vXXXX_web-microservices.tar.gz
@@ -477,7 +480,7 @@ ___
 	ssh-keygen
 	```
 
-### Create the virtual machines
+### Create the virtual machines Azure
 1. Untar the CloudXPRT data-analytics code.
 	```
 	cd ~
@@ -540,7 +543,7 @@ ___
 	sudo ./create-cluster.sh
 	```
 
-### Run the benchmark
+### Run the benchmark Azure
 
 1. Untar the CloudXPRT files.
 	```
@@ -571,7 +574,7 @@ terraform destroy
 
 ___
 
-## Configure and run on Google Cloud Platform (GCP)
+## Configure and run on Google Cloud Platform
 
 ### Install a Kubernetes cluster with KOPS on Google Cloud and run CloudXPRT
 
@@ -613,7 +616,7 @@ ___
 	ssh-keygen
 	```
 
-### Create the virtual machines
+### Create the virtual machines GCP
 
 1. Copy your service-acount private key to the Terraform directory.
 	```
@@ -685,7 +688,7 @@ ___
 	sudo ./create-cluster.sh
 	```
 
-### Run the benchmark
+### Run the benchmark GCP
 ```
 cd ~/CloudXPRT_vXXXX_web-microservices/cnbrun
 ```
