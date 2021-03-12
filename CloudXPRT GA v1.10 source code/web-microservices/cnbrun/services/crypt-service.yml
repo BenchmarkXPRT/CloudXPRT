@@ -1,0 +1,37 @@
+---
+# Encryption/Decryption service
+apiVersion: v1
+kind: Service
+metadata:
+  name: crypt-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8076
+  selector:
+    app: crypt-service
+---
+# Encryption/Decryption Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypt-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crypt-service
+  template:
+    metadata:
+      labels:
+        app: crypt-service
+    spec:
+      containers:
+      - name: cryptserver
+        image: cloudxprt/cryptserver:v1.0
+        ports:
+        - containerPort: 8076
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "800m"

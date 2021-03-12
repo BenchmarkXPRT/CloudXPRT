@@ -1,0 +1,55 @@
+<html>
+<head><link rel="stylesheet" href="report.css" type="text/css">
+</head>
+<body>
+    <h1 align="center">{{.ReportTitle}}</h1>
+
+    <table class="responstable">
+
+        <tr>
+            <th rowspan="2">TIME(S)</th>
+            <th rowspan="2">CLIENTS</th>
+            {{ range  .RunTimes }}
+                    <th colspan="2">{{ . }}</th>
+            {{ end }}
+            <th rowspan="2">RATIO(REQ/RESP)</th>
+        </tr>
+        <tr>
+            {{ range  .RunTimes }}
+                    <th>REQ</th>
+                    <th>RESP</th>
+            {{ end }}
+        </tr>
+
+        {{ range $report := .Reports }}
+        <tr>
+            <td>{{$report.Time}}</td>
+            <td>{{$report.Clients}}</td>
+            {{ range $report.Items }}
+                {{if .RequestC}}
+                    <td><b>{{.Request}}</b></td>
+                {{else}}
+                    <td>{{.Request}}</td>
+                {{end}}
+                {{if .ResponseC}}
+                    <td><b>{{.Response}}</b></td>
+                {{else}}
+                    <td>{{.Response}}</td>
+                {{end}}
+            {{ end }}
+            <td>{{$report.Ratio}}</td>
+        </tr>
+        {{end}}
+
+        <tr>
+            <td>REQ:</td><td colspan="100%">Successful requests during test period</td>
+        </tr>
+        <tr>
+            <td>RESP:</td><td colspan="100%">Workload response time in milliseconds</td>
+        </tr>
+        <tr>
+            <td colspan="100%">Results appear in the order in which they were run. Bold indicates a median measurement</td>
+        </tr>
+    </table>
+</body>
+</html>

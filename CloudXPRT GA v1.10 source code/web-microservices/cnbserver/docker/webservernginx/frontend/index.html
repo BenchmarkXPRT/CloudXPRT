@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/signin-register.css">
+</head>
+
+<body>
+  <form id="form" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal text-center text-white">Financial Options Login</h1>
+    </br>
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="signin-button" onclick="login()">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="window.location.href = 'registration.html'">Register</button>
+    <p class="mt-5 mb-3 text-right text-white"> CNB 2019</p>
+  </form>
+  <script src="js/login.js"></script>
+</body>

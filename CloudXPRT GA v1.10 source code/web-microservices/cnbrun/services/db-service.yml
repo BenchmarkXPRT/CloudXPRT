@@ -1,0 +1,38 @@
+---
+# DB API service
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8078
+  selector:
+    app: db-service
+---
+# DB API Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-service
+  template:
+    metadata:
+      labels:
+        app: db-service
+    spec:
+      containers:
+      - name: dbserver
+        image: cloudxprt/dbserver:v1.0
+        ports:
+        - containerPort: 8078
+        resources:
+          requests:
+            memory: "10Mi"
+            cpu: "200m"
+

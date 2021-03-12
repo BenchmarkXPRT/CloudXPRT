@@ -1,0 +1,11 @@
+container-scaling/build
+data-analytics/build
+data-analytics/src
+installation/bin/reset-environment
+installation/bin/setup-environment
+web-microservices/build/
+web-microservices/cnbrun/autoloader
+web-microservices/cnbrun/cnbrun
+web-microservices/cnbrun/gobench
+web-microservices/postprocess/postprocess
+web-microservices/pkg/*

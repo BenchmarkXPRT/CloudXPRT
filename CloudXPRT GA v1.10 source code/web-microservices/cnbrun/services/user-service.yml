@@ -1,0 +1,38 @@
+---
+# User service
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8079
+  selector:
+    app: user-service
+---
+# User Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: userserver
+        image: cloudxprt/userserver:v1.0
+        ports:
+        - containerPort: 8079
+        resources:
+          requests:
+            memory: "10Mi"
+            cpu: "200m"
+

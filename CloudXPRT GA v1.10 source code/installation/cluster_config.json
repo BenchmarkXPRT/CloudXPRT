@@ -1,0 +1,24 @@
+{
+    "_comment": "The first node will be the control-plane node. Each {..} section",
+    "_comment": "describes a single node's IP address and hostname.",
+    "_comment": "Hostnames are optional. They must be unique and only contain",
+    "_comment": "lowercase alphanumeric characters. If not provided, the",
+    "_comment": "default hostnames will be node1, node2, ..., nodeN",
+    "nodes": [
+        {
+            "ip_address": "",
+            "hostname": ""
+        }
+    ],
+
+    "_comment": "These proxy variables will modify the package manager,",
+    "_comment": "/etc/environment, and kubernetes proxy settings.",
+    "_comment": "http_proxy, https_proxy, and reboot are only taken into",
+    "_comment": "account if set_proxy is set to 'yes'",
+    "proxy": {
+        "set_proxy": "no",
+        "http_proxy": "http://proxy-server.example.com:900",
+        "https_proxy": "https://proxy-server.example.com:900",
+        "reboot": "yes"
+    }
+}
