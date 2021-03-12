@@ -2,8 +2,8 @@
 
 - [Introduction](#introduction)
 - [Configure and run on-premises](#configure-and-run-on-premises)
-	- [Configure the benchmark environment](#configure-data-analytics-workload-onp)
-	- [Run the benchmark on premises](#run-benchmark-on-premises)
+	- [Configure the benchmark environment](#configure-the-benchmark-environment)
+	- [Run the benchmark on premises](#run-the-benchmark-on-premises)
 - [Benchmark results](#benchmark-results)
 - [Configure and run on Amazon Web Services](#configure-and-run-on-amazon-web-services)
 	- [Create the virtual machines AWS](#create-the-virtual-machines-aws)
