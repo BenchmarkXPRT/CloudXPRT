@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://github.com/BenchmarkXPRT/CloudXPRT-working-space/blob/master/CloudXPRT-header.png" alt="CloudXPRT Header" /></h1>
+<h1 align="center"><img src="https://github.com/BenchmarkXPRT/CloudXPRT/blob/master/CloudXPRT-header.png" alt="CloudXPRT Header" /></h1>
 <h4 align="center">
   <i>
     A free cloud-native benchmark designed and developed by the
