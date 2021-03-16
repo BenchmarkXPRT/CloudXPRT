@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://github.com/BenchmarkXPRT/CloudXPRT/blob/master/CloudXPRT-header.png" alt="CloudXPRT Header" /></h1>
+<h1 align="center"><img src="https://github.com/BenchmarkXPRT/CloudXPRT-working-space/blob/master/CloudXPRT-header.png" alt="CloudXPRT Header" /></h1>
 <h4 align="center">
   <i>
     A free cloud-native benchmark designed and developed by the
@@ -10,7 +10,6 @@
 
 - [Introduction](#Introduction)
 - [CloudXPRT workloads](#CloudXPRT-workloads)
-- [Getting started](#Getting-started)
 - [Prerequisites](#Prerequisites)
 - [Results and results submission](#Results-and-results-submission)
 - [Support](#Support)
@@ -36,14 +35,14 @@ In the web microservices workload, a simulated user logs in to a web application
 
 The workload reports performance in transactions per second, which reflects the number of successful requests per second the stack achieves for each level of concurrency. Testers can use this workload’s metrics to compare IaaS stack performance and to evaluate whether any given stack is capable of meeting SLA thresholds.
 
-#### [Set up and install the web microservices workload](Web-microservices-docs/README.md)
+#### [Set up and install the web microservices workload](web-microservices)
 
 ### Data analytics
 The CloudXPRT data analytics workload uses the gradient-boosting technique to classify a moderately large dataset with the XGBoost library. XGBoost is a gradient-boosting framework that data scientists often use for ML-based regression and classification problems. In the context of CloudXPRT, the purpose of the workload is to evaluate how well an IaaS stack enables XGBoost to speed and optimize model training. To do this, the data analytics workload uses Kubernetes, Docker, object storage, message pipeline, and monitorization components to mimic an end-to-end IaaS scenario.
 
 The workload reports latency (response time in seconds in the 95th percentile) and throughput (jobs per minute) rates. Testers can use this workload’s metrics to compare IaaS stack performance and to evaluate whether any given stack is capable of meeting service-level agreement (SLA) thresholds.
 
-#### [Set up and install the data analytics workload](Data-analytics-docs/README.md)
+#### [Set up and install the data analytics workload](data-analytics/README.md)
 
 ## Prerequisites
 We highly recommended running this benchmark on high end servers. While running, the benchmark will scale to utilize all the cores available. However, for functional testing, your physical node or VM must have at least:
