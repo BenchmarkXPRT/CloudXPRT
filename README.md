@@ -10,7 +10,6 @@
 
 - [Introduction](#Introduction)
 - [CloudXPRT workloads](#CloudXPRT-workloads)
-- [Getting started](#Getting-started)
 - [Prerequisites](#Prerequisites)
 - [Results and results submission](#Results-and-results-submission)
 - [Support](#Support)
