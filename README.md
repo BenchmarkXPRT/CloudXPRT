@@ -46,8 +46,10 @@ The workload reports latency (response time in seconds in the 95th percentile) a
 
 ## Prerequisites
 We highly recommended running this benchmark on high end servers. While running, the benchmark will scale to utilize all the cores available. However, for functional testing, your physical node or VM must have at least:
-* Ubuntu 20.04.2 or later for on-premises testing
-* Ubuntu 18.04 and 20.04.2 or later for CSP (AWS/Azure/GCP) testing
+* Web microservices on-premises testing - Ubuntu 20.04.2 or 22.04
+* Web microservices CSP (AWS/Azure/GCP) testing - Ubuntu 18.04, 20.04.2, or 22.04.
+* Data analytics on-premises testing - Ubuntu 20.04.2.
+* Data analytics CSP (AWS/Azure/GCP) testing - Ubuntu 18.04 or 20.04.2.
 * 16 logical or virtual CPUs
 * 8 GB RAM
 * 10 GB of available disk space (50 GB for the data analytics workload)
